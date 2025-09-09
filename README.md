@@ -2,7 +2,7 @@
 
 ![Tann Mann Logo](https://img.shields.io/badge/Tann%20Mann-Premium%20Fashion-e74c3c?style=for-the-badge)
 
-🌐 **Live Website**: [https://omprakash625.github.io/Clothing_website/](https://omprakash625.github.io/Clothing_website/)
+🌐 **Live Website**: <a href="https://omprakash625.github.io/Clothing_website/" target="_blank">Click Here!</a>
 
 A modern, responsive e-commerce website for a premium clothing store featuring advanced search and filtering capabilities, shopping cart functionality, and a seamless checkout process.
 
@@ -139,7 +139,7 @@ Tann_Mann_Website/
 - **Categories**: All, Men's, Women's, Kids'
 - **Price Range**: Slider and input controls ($0-$200)
 - **Sizes**: XS, S, M, L, XL, XXL
-- **Brands**: StyleHub, Urban Threads, Classic Wear, Trendy Fashion
+- **Brands**: Tann Mann, Urban Threads, Classic Wear, Trendy Fashion
 - **Colors**: Visual color picker with 8 color options
 - **Ratings**: 3+ stars, 4+ stars with visual indicators
 

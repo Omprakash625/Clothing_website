@@ -28,7 +28,7 @@ const sampleProducts = [
         description: "Comfortable cotton t-shirt perfect for everyday wear",
         sizes: ["S", "M", "L", "XL"],
         colors: ["Black", "White", "Blue"],
-        brand: "StyleHub",
+        brand: "Tann Mann",
         rating: 4.5,
         reviews: 128,
         badge: "New",
@@ -92,7 +92,7 @@ const sampleProducts = [
         description: "High-performance leggings for yoga and fitness",
         sizes: ["XS", "S", "M", "L", "XL"],
         colors: ["Black", "Gray", "Pink"],
-        brand: "StyleHub",
+        brand: "Tann Mann",
         rating: 4.7,
         reviews: 203,
         badge: "New",
@@ -172,7 +172,7 @@ const sampleProducts = [
         description: "Lightweight shorts perfect for workouts and sports",
         sizes: ["S", "M", "L", "XL"],
         colors: ["Black", "Gray", "Blue"],
-        brand: "StyleHub",
+        brand: "Tann Mann",
         rating: 4.4,
         reviews: 91,
         badge: "",
@@ -1330,11 +1330,11 @@ function showLoadingMessage(message) {
 // ==================== LOCAL STORAGE FUNCTIONS ====================
 
 function saveCartToStorage() {
-    localStorage.setItem('stylehub_cart', JSON.stringify(cart));
+    localStorage.setItem('tannmann_cart', JSON.stringify(cart));
 }
 
 function loadCartFromStorage() {
-    const savedCart = localStorage.getItem('stylehub_cart');
+    const savedCart = localStorage.getItem('tannmann_cart');
     if (savedCart) {
         cart = JSON.parse(savedCart);
         updateCartCount();

@@ -29,7 +29,7 @@ body {
 }
 
 .navbar {
-    padding: 1rem 0;
+    padding: 7px 0;
 }
 
 .nav-container {
@@ -45,6 +45,44 @@ body {
     color: #e74c3c;
     font-size: 2rem;
     font-weight: 700;
+}
+
+/* Logo styles */
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* prevent logo from shrinking */
+    margin: 0;
+    padding: 0;
+}
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+.logo-img {
+    display: block;
+    height: clamp(44px, 6.5vw, 72px);
+    width: auto; /* preserve aspect ratio */
+    max-width: 320px; /* cap overly wide logos */
+    object-fit: contain; /* ensure clean fit */
+    margin: 0;
+    padding: 0;
+    image-rendering: -webkit-optimize-contrast; /* improve sharpness on WebKit */
+}
+
+/* Brand title next to logo */
+.brand-title {
+    margin: 0 0 0 10px; /* remove default h1 margins; add small left gap */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 700;
+    color: #e74c3c;
+    line-height: 1; /* align vertically with logo */
+    white-space: nowrap; /* prevent wrapping */
 }
 
 .nav-menu {
