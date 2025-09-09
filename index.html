@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tann Mann - Premium clothing store offering trendy fashion for men, women, and kids. Shop the latest arrivals with fast shipping and secure checkout.">
-    <meta name="keywords" content="clothing store, fashion, men's clothing, women's clothing, kids clothing, trendy fashion, online shopping">
     <meta name="author" content="Tann Mann">
     <meta property="og:title" content="Tann Mann - Premium Fashion Store">
     <meta property="og:description" content="Discover the latest fashion trends at Tann Mann. Quality clothing for the whole family.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tannmann.com">
     <title>Tann Mann - Premium Fashion Store | Men, Women & Kids Clothing</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous">
 </head>
 <body>
     <!-- Header -->
@@ -26,7 +30,7 @@
                     <a href="#home" class="logo-link" aria-label="Tann Mann Home">
                         <img src="images/logo.png" alt="Tann Mann logo" class="logo-img">
                     </a>
-                    <h1 class="brand-title">तN-मN</h1>
+                    <span class="brand-title">तN-मN</span>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home" class="nav-link">Home</a></li>
@@ -35,16 +39,12 @@
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="nav-icons">
-                    <button class="search-toggle-btn" onclick="toggleQuickSearch()" title="Search">
+                    <button class="search-toggle-btn" title="Search" aria-label="Toggle search">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button class="cart-btn" onclick="toggleCart()">
+                    <button class="cart-btn" aria-label="Shopping cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </button>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span class="cart-count" aria-live="polite">0</span>
                     </button>
                 </div>
             </div>
@@ -62,36 +62,6 @@
             <div class="hero-placeholder">
                 <i class="fas fa-tshirt"></i>
                 <p>Latest Collection</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Categories -->
-    <section class="categories">
-        <div class="container">
-            <h2>Shop by Category</h2>
-            <div class="category-grid">
-                <div class="category-card" onclick="filterProducts('men')">
-                    <div class="category-image">
-                        <i class="fas fa-male"></i>
-                    </div>
-                    <h3>Men's Fashion</h3>
-                    <p>Stylish clothing for modern men</p>
-                </div>
-                <div class="category-card" onclick="filterProducts('women')">
-                    <div class="category-image">
-                        <i class="fas fa-female"></i>
-                    </div>
-                    <h3>Women's Fashion</h3>
-                    <p>Elegant styles for every woman</p>
-                </div>
-                <div class="category-card" onclick="filterProducts('kids')">
-                    <div class="category-image">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h3>Kids' Fashion</h3>
-                    <p>Comfortable and fun clothing for kids</p>
-                </div>
             </div>
         </div>
     </section>
