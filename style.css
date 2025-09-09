@@ -471,6 +471,64 @@ body {
     transform: rotate(45deg);
 }
 
+/* Radio Button Styles */
+.filter-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.filter-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radiomark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.filter-radio:hover input ~ .radiomark {
+    background-color: #ccc;
+}
+
+.filter-radio input:checked ~ .radiomark {
+    background-color: #e74c3c;
+}
+
+.radiomark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.filter-radio input:checked ~ .radiomark:after {
+    display: block;
+}
+
+.filter-radio .radiomark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
 /* Price Range Styles */
 .price-range-container {
     display: flex;
@@ -1422,6 +1480,125 @@ body {
     opacity: 0.8;
 }
 
+/* Mobile Filter Sidebar */
+.mobile-filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 350px;
+    height: 100vh;
+    background: white;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+    z-index: 1003;
+    transition: left 0.3s ease;
+    display: none;
+    flex-direction: column;
+}
+
+.mobile-filter-sidebar.open {
+    left: 0;
+}
+
+.mobile-filter-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.mobile-filter-header h3 {
+    color: #333;
+    margin: 0;
+}
+
+.close-mobile-filters {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+}
+
+.mobile-filter-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.mobile-filter-content .filter-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-filter-content .filter-section:last-child {
+    border-bottom: none;
+}
+
+.mobile-filter-content .filter-section h4 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.mobile-filter-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.mobile-filter-actions button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.mobile-filter-actions .clear-filters-btn {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e9ecef;
+}
+
+.mobile-filter-actions .apply-filters-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.mobile-filter-actions .clear-filters-btn:hover {
+    background: #e9ecef;
+}
+
+.mobile-filter-actions .apply-filters-btn:hover {
+    background: #c0392b;
+}
+
+/* Mobile Filter Overlay */
+.mobile-filter-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1002;
+}
+
+.mobile-filter-overlay.active {
+    display: block;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
@@ -1430,6 +1607,37 @@ body {
     
     .nav-menu {
         display: none;
+    }
+
+    /* Show mobile filter sidebar on mobile */
+    .mobile-filter-sidebar {
+        display: flex;
+    }
+
+    /* Hide desktop filters on mobile */
+    .filters-panel {
+        display: none !important;
+    }
+
+    /* Update filter toggle button for mobile */
+    .filter-toggle-btn {
+        position: relative;
+    }
+
+    .filter-toggle-btn::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 8px;
+        height: 8px;
+        background: #e74c3c;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .filter-toggle-btn.has-active-filters::after {
+        display: block;
     }
     
     .hero {

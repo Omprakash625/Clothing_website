@@ -39,7 +39,6 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </button>
-                    <button class="hamburger">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -124,6 +123,188 @@
                             <option value="newest">Newest First</option>
                             <option value="popular">Most Popular</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Filter Sidebar -->
+            <div class="mobile-filter-sidebar" id="mobile-filter-sidebar">
+                <div class="mobile-filter-header">
+                    <h3>Filters</h3>
+                    <button class="close-mobile-filters" onclick="closeMobileFilters()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mobile-filter-content">
+                    <div class="filter-section">
+                        <h4>Category</h4>
+                        <div class="filter-options">
+                            <label class="filter-radio">
+                                <input type="radio" name="mobile-category" value="all" checked onchange="updateMobileCategoryFilter()">
+                                <span class="radiomark"></span>
+                                All Categories
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="mobile-category" value="men" onchange="updateMobileCategoryFilter()">
+                                <span class="radiomark"></span>
+                                Men's Clothing
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="mobile-category" value="women" onchange="updateMobileCategoryFilter()">
+                                <span class="radiomark"></span>
+                                Women's Clothing
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="mobile-category" value="kids" onchange="updateMobileCategoryFilter()">
+                                <span class="radiomark"></span>
+                                Kids' Clothing
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Price Range</h4>
+                        <div class="price-range-container">
+                            <div class="price-inputs">
+                                <input type="number" id="mobile-min-price" placeholder="Min" min="0" onchange="updateMobilePriceFilter()">
+                                <span>to</span>
+                                <input type="number" id="mobile-max-price" placeholder="Max" min="0" onchange="updateMobilePriceFilter()">
+                            </div>
+                            <div class="price-range-slider">
+                                <input type="range" id="mobile-price-range" min="0" max="200" value="200" oninput="updateMobilePriceRange(this.value)">
+                                <div class="price-range-labels">
+                                    <span>$0</span>
+                                    <span id="mobile-max-price-label">$200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Size</h4>
+                        <div class="filter-options size-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XS" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XS
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="S" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                S
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="M" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                M
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="L" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                L
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XL" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XL
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XXL" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XXL
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Brand</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="StyleHub" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                StyleHub
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Urban Threads" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Urban Threads
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Classic Wear" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Classic Wear
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Trendy Fashion" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Trendy Fashion
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Color</h4>
+                        <div class="color-options">
+                            <label class="color-option" style="background-color: #000000;" title="Black">
+                                <input type="checkbox" value="Black" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFFFFF; border: 1px solid #ddd;" title="White">
+                                <input type="checkbox" value="White" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FF0000;" title="Red">
+                                <input type="checkbox" value="Red" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #0000FF;" title="Blue">
+                                <input type="checkbox" value="Blue" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #008000;" title="Green">
+                                <input type="checkbox" value="Green" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFFF00;" title="Yellow">
+                                <input type="checkbox" value="Yellow" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFC0CB;" title="Pink">
+                                <input type="checkbox" value="Pink" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #808080;" title="Gray">
+                                <input type="checkbox" value="Gray" onchange="updateColorFilter()">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Rating</h4>
+                        <div class="rating-filter">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="4" onchange="updateRatingFilter()">
+                                <span class="checkmark"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                & Up
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="3" onchange="updateRatingFilter()">
+                                <span class="checkmark"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                & Up
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mobile-filter-actions">
+                        <button class="clear-filters-btn" onclick="clearAllFilters()">Clear All</button>
+                        <button class="apply-filters-btn" onclick="applyMobileFilters()">Apply Filters</button>
                     </div>
                 </div>
             </div>

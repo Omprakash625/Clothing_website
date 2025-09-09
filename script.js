@@ -248,11 +248,17 @@ function initializeEventListeners() {
         });
     });
 
-    // Close cart when clicking overlay
+    // Close cart or mobile filters when clicking overlay
     const overlay = document.getElementById('overlay');
     if (overlay) {
         overlay.addEventListener('click', function() {
-            toggleCart();
+            // Check if mobile filter sidebar is open
+            const mobileFilterSidebar = document.getElementById('mobile-filter-sidebar');
+            if (mobileFilterSidebar && mobileFilterSidebar.classList.contains('open')) {
+                closeMobileFilters();
+            } else {
+                toggleCart();
+            }
         });
     }
 
@@ -306,12 +312,159 @@ function performSearch() {
 
 // Filter Toggle
 function toggleFilters() {
-    const filtersPanel = document.getElementById('filters-panel');
-    const toggleBtn = document.querySelector('.filter-toggle-btn');
+    // Check if we're on mobile
+    if (window.innerWidth <= 768) {
+        openMobileFilters();
+    } else {
+        const filtersPanel = document.getElementById('filters-panel');
+        const toggleBtn = document.querySelector('.filter-toggle-btn');
+        
+        if (filtersPanel && toggleBtn) {
+            filtersPanel.classList.toggle('open');
+            toggleBtn.classList.toggle('active');
+        }
+    }
+}
+
+// Mobile Filter Functions
+function openMobileFilters() {
+    const mobileFilterSidebar = document.getElementById('mobile-filter-sidebar');
+    const overlay = document.getElementById('overlay');
     
-    if (filtersPanel && toggleBtn) {
-        filtersPanel.classList.toggle('open');
-        toggleBtn.classList.toggle('active');
+    if (mobileFilterSidebar && overlay) {
+        mobileFilterSidebar.classList.add('open');
+        overlay.classList.add('active');
+        
+        // Prevent body scroll when sidebar is open
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMobileFilters() {
+    const mobileFilterSidebar = document.getElementById('mobile-filter-sidebar');
+    const overlay = document.getElementById('overlay');
+    
+    if (mobileFilterSidebar && overlay) {
+        mobileFilterSidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+    }
+}
+
+function applyMobileFilters() {
+    // Apply all current filters
+    applyAllFilters();
+    
+    // Close the mobile filter sidebar
+    closeMobileFilters();
+    
+    // Show success message
+    showSuccessMessage('Filters applied successfully!');
+}
+
+// Mobile Price Filter Functions
+function updateMobilePriceFilter() {
+    const minPrice = document.getElementById('mobile-min-price');
+    const maxPrice = document.getElementById('mobile-max-price');
+    
+    if (minPrice && maxPrice) {
+        activeFilters.priceRange.min = minPrice.value ? parseFloat(minPrice.value) : 0;
+        activeFilters.priceRange.max = maxPrice.value ? parseFloat(maxPrice.value) : 200;
+        
+        // Update slider
+        const slider = document.getElementById('mobile-price-range');
+        const maxPriceLabel = document.getElementById('mobile-max-price-label');
+        if (maxPrice.value && slider && maxPriceLabel) {
+            slider.value = maxPrice.value;
+            maxPriceLabel.textContent = `${maxPrice.value}`;
+        }
+        
+        // Sync with desktop filters
+        syncMobileFiltersToDesktop();
+    }
+}
+
+function updateMobilePriceRange(value) {
+    const maxPrice = document.getElementById('mobile-max-price');
+    const maxPriceLabel = document.getElementById('mobile-max-price-label');
+    
+    if (maxPrice && maxPriceLabel) {
+        maxPrice.value = value;
+        maxPriceLabel.textContent = `${value}`;
+        activeFilters.priceRange.max = parseFloat(value);
+        
+        // Sync with desktop filters
+        syncMobileFiltersToDesktop();
+    }
+}
+
+// Sync mobile filters with desktop filters
+function syncMobileFiltersToDesktop() {
+    // Sync price range
+    const desktopMinPrice = document.getElementById('min-price');
+    const desktopMaxPrice = document.getElementById('max-price');
+    const desktopPriceRange = document.getElementById('price-range');
+    const desktopMaxPriceLabel = document.getElementById('max-price-label');
+    
+    if (desktopMinPrice) desktopMinPrice.value = activeFilters.priceRange.min || '';
+    if (desktopMaxPrice) desktopMaxPrice.value = activeFilters.priceRange.max || '';
+    if (desktopPriceRange) desktopPriceRange.value = activeFilters.priceRange.max;
+    if (desktopMaxPriceLabel) desktopMaxPriceLabel.textContent = `${activeFilters.priceRange.max}`;
+}
+
+// Sync desktop filters with mobile filters
+function syncDesktopFiltersToMobile() {
+    // Sync price range
+    const mobileMinPrice = document.getElementById('mobile-min-price');
+    const mobileMaxPrice = document.getElementById('mobile-max-price');
+    const mobilePriceRange = document.getElementById('mobile-price-range');
+    const mobileMaxPriceLabel = document.getElementById('mobile-max-price-label');
+    
+    if (mobileMinPrice) mobileMinPrice.value = activeFilters.priceRange.min || '';
+    if (mobileMaxPrice) mobileMaxPrice.value = activeFilters.priceRange.max || '';
+    if (mobilePriceRange) mobilePriceRange.value = activeFilters.priceRange.max;
+    if (mobileMaxPriceLabel) mobileMaxPriceLabel.textContent = `${activeFilters.priceRange.max}`;
+    
+    // Sync category selection
+    const mobileRadios = document.querySelectorAll('input[name="mobile-category"]');
+    const selectedCategory = activeFilters.categories.includes('all') ? 'all' : activeFilters.categories[0];
+    mobileRadios.forEach(radio => {
+        radio.checked = radio.value === selectedCategory;
+    });
+}
+
+// Mobile Category Filter Function
+function updateMobileCategoryFilter() {
+    const selectedRadio = document.querySelector('input[name="mobile-category"]:checked');
+    if (selectedRadio) {
+        const selectedValue = selectedRadio.value;
+        
+        if (selectedValue === 'all') {
+            activeFilters.categories = ['all'];
+        } else {
+            activeFilters.categories = [selectedValue];
+        }
+        
+        // Sync with desktop filters
+        const desktopCheckboxes = document.querySelectorAll('.filters-panel input[type="checkbox"][onchange="updateCategoryFilter()"]');
+        desktopCheckboxes.forEach(checkbox => {
+            if (selectedValue === 'all') {
+                checkbox.checked = checkbox.value === 'all';
+            } else {
+                checkbox.checked = checkbox.value === selectedValue;
+            }
+        });
+        
+        // Update quick filter buttons
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const targetBtn = document.querySelector(`.quick-filter-btn[onclick*="'${selectedValue}'"]`);
+        if (targetBtn) {
+            targetBtn.classList.add('active');
+        }
     }
 }
 
