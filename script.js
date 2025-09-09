@@ -288,16 +288,23 @@ function scrollToSection(sectionId) {
 
 // Quick Search Toggle Function
 function toggleQuickSearch() {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        // Scroll to products section
-        scrollToSection('products');
-        
-        // Focus on search input after a short delay to ensure smooth scrolling
-        setTimeout(() => {
-            searchInput.focus();
-            searchInput.select();
-        }, 500);
+    // Check if we're on mobile
+    if (window.innerWidth <= 768) {
+        // On mobile, open the filter sidebar which includes search functionality
+        openMobileFilters();
+    } else {
+        // On desktop, scroll to search and focus
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            // Scroll to products section
+            scrollToSection('products');
+            
+            // Focus on search input after a short delay to ensure smooth scrolling
+            setTimeout(() => {
+                searchInput.focus();
+                searchInput.select();
+            }, 500);
+        }
     }
 }
 
@@ -307,6 +314,28 @@ function performSearch() {
     if (searchInput) {
         searchQuery = searchInput.value.trim();
         applyAllFilters();
+    }
+}
+
+// Mobile Search Functions
+function performMobileSearch() {
+    const mobileSearchInput = document.getElementById('mobile-search-input');
+    if (mobileSearchInput) {
+        searchQuery = mobileSearchInput.value.trim();
+        
+        // Sync with desktop search input
+        const desktopSearchInput = document.getElementById('search-input');
+        if (desktopSearchInput) {
+            desktopSearchInput.value = searchQuery;
+        }
+        
+        applyAllFilters();
+    }
+}
+
+function handleMobileSearch(event) {
+    if (event.key === 'Enter') {
+        performMobileSearch();
     }
 }
 
@@ -359,6 +388,11 @@ function applyMobileFilters() {
     
     // Close the mobile filter sidebar
     closeMobileFilters();
+    
+    // Scroll to products section to show results
+    setTimeout(() => {
+        scrollToSection('products');
+    }, 300); // Small delay to ensure sidebar closes smoothly
     
     // Show success message
     showSuccessMessage('Filters applied successfully!');
