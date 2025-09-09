@@ -3,9 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="StyleHub - Premium clothing store offering trendy fashion for men, women, and kids. Shop the latest arrivals with fast shipping and secure checkout.">
+    <meta name="keywords" content="clothing store, fashion, men's clothing, women's clothing, kids clothing, trendy fashion, online shopping">
+    <meta name="author" content="StyleHub">
+    <meta property="og:title" content="StyleHub - Premium Fashion Store">
+    <meta property="og:description" content="Discover the latest fashion trends at StyleHub. Quality clothing for the whole family.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stylehub.com">
+    <title>StyleHub - Premium Fashion Store | Men, Women & Kids Clothing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>StyleHub</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#products" class="nav-link">Products</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="search-toggle-btn" onclick="toggleQuickSearch()" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Style</h1>
+            <p>Premium fashion for every occasion. Shop the latest trends in men's, women's, and kids' clothing.</p>
+            <button class="cta-btn" onclick="scrollToSection('products')">Shop Now</button>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder">
+                <i class="fas fa-tshirt"></i>
+                <p>Latest Collection</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterProducts('men')">
+                    <div class="category-image">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <h3>Men's Fashion</h3>
+                    <p>Stylish clothing for modern men</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('women')">
+                    <div class="category-image">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Women's Fashion</h3>
+                    <p>Elegant styles for every woman</p>
+                </div>
+                <div class="category-card" onclick="filterProducts('kids')">
+                    <div class="category-image">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Kids' Fashion</h3>
+                    <p>Comfortable and fun clothing for kids</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            
+            <!-- Search and Filter Bar -->
+            <div class="search-filter-bar">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search products..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-controls">
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                        Filters
+                    </button>
+                    
+                    <div class="sort-container">
+                        <select id="sort-select" onchange="sortProducts(this.value)">
+                            <option value="default">Sort by</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-low">Price (Low to High)</option>
+                            <option value="price-high">Price (High to Low)</option>
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Filters Panel -->
+            <div class="filters-panel" id="filters-panel">
+                <div class="filters-content">
+                    <div class="filter-section">
+                        <h4>Category</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="all" checked onchange="updateCategoryFilter()">
+                                <span class="checkmark"></span>
+                                All Categories
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="men" onchange="updateCategoryFilter()">
+                                <span class="checkmark"></span>
+                                Men's Clothing
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="women" onchange="updateCategoryFilter()">
+                                <span class="checkmark"></span>
+                                Women's Clothing
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="kids" onchange="updateCategoryFilter()">
+                                <span class="checkmark"></span>
+                                Kids' Clothing
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Price Range</h4>
+                        <div class="price-range-container">
+                            <div class="price-inputs">
+                                <input type="number" id="min-price" placeholder="Min" min="0" onchange="updatePriceFilter()">
+                                <span>to</span>
+                                <input type="number" id="max-price" placeholder="Max" min="0" onchange="updatePriceFilter()">
+                            </div>
+                            <div class="price-range-slider">
+                                <input type="range" id="price-range" min="0" max="200" value="200" oninput="updatePriceRange(this.value)">
+                                <div class="price-range-labels">
+                                    <span>$0</span>
+                                    <span id="max-price-label">$200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Size</h4>
+                        <div class="filter-options size-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XS" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XS
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="S" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                S
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="M" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                M
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="L" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                L
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XL" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XL
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="XXL" onchange="updateSizeFilter()">
+                                <span class="checkmark"></span>
+                                XXL
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Brand</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="StyleHub" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                StyleHub
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Urban Threads" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Urban Threads
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Classic Wear" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Classic Wear
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Trendy Fashion" onchange="updateBrandFilter()">
+                                <span class="checkmark"></span>
+                                Trendy Fashion
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Color</h4>
+                        <div class="color-options">
+                            <label class="color-option" style="background-color: #000000;" title="Black">
+                                <input type="checkbox" value="Black" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFFFFF; border: 1px solid #ddd;" title="White">
+                                <input type="checkbox" value="White" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FF0000;" title="Red">
+                                <input type="checkbox" value="Red" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #0000FF;" title="Blue">
+                                <input type="checkbox" value="Blue" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #008000;" title="Green">
+                                <input type="checkbox" value="Green" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFFF00;" title="Yellow">
+                                <input type="checkbox" value="Yellow" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #FFC0CB;" title="Pink">
+                                <input type="checkbox" value="Pink" onchange="updateColorFilter()">
+                            </label>
+                            <label class="color-option" style="background-color: #808080;" title="Gray">
+                                <input type="checkbox" value="Gray" onchange="updateColorFilter()">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Rating</h4>
+                        <div class="rating-filter">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="4" onchange="updateRatingFilter()">
+                                <span class="checkmark"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                & Up
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="3" onchange="updateRatingFilter()">
+                                <span class="checkmark"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                & Up
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="clear-filters-btn" onclick="clearAllFilters()">Clear All</button>
+                        <button class="apply-filters-btn" onclick="applyFilters()">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Filter Buttons -->
+            <div class="quick-filters">
+                <button class="quick-filter-btn active" onclick="filterProducts('all')">All</button>
+                <button class="quick-filter-btn" onclick="filterProducts('men')">Men</button>
+                <button class="quick-filter-btn" onclick="filterProducts('women')">Women</button>
+                <button class="quick-filter-btn" onclick="filterProducts('kids')">Kids</button>
+                <button class="quick-filter-btn" onclick="filterProducts('sale')">Sale</button>
+                <button class="quick-filter-btn" onclick="filterProducts('new')">New Arrivals</button>
+            </div>
+
+            <!-- Results Info -->
+            <div class="results-info">
+                <span id="results-count">Showing all products</span>
+                <div class="view-options">
+                    <button class="view-btn active" onclick="changeView('grid')" title="Grid View">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" onclick="changeView('list')" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About StyleHub</h2>
+                    <p>Founded in 2020, StyleHub has been at the forefront of fashion innovation, bringing you the latest trends and timeless classics. Our mission is to make high-quality, stylish clothing accessible to everyone.</p>
+                    <p>We believe that fashion is a form of self-expression, and our carefully curated collection reflects diverse styles and preferences. From casual wear to formal attire, we have something for every occasion and every member of your family.</p>
+                    <div class="values">
+                        <div class="value-item">
+                            <i class="fas fa-leaf"></i>
+                            <h4>Sustainable Fashion</h4>
+                            <p>Committed to eco-friendly practices</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Quality First</h4>
+                            <p>Premium materials and craftsmanship</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Customer Focused</h4>
+                            <p>Your satisfaction is our priority</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <i class="fas fa-store"></i>
+                        <p>Our Story</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Fashion Street, Style City, SC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@stylehub.com</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="close-modal" onclick="closeCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Shipping</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Payment</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Confirmation</span>
+                </div>
+            </div>
+            <div class="checkout-content">
+                <!-- Step 1: Shipping Information -->
+                <div class="checkout-step" id="step-1">
+                    <h4>Shipping Information</h4>
+                    <form class="checkout-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Street Address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="City" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="ZIP Code" required>
+                            </div>
+                        </div>
+                        <div class="shipping-options">
+                            <h5>Shipping Method</h5>
+                            <label class="radio-option">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <span>Standard Shipping (5-7 days) - Free</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="shipping" value="express">
+                                <span>Express Shipping (2-3 days) - $9.99</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="shipping" value="overnight">
+                                <span>Overnight Shipping - $19.99</span>
+                            </label>
+                        </div>
+                    </form>
+                    <button class="next-step-btn" onclick="nextStep(2)">Continue to Payment</button>
+                </div>
+
+                <!-- Step 2: Payment Information -->
+                <div class="checkout-step" id="step-2" style="display: none;">
+                    <h4>Payment Information</h4>
+                    <form class="checkout-form">
+                        <div class="payment-methods">
+                            <label class="radio-option">
+                                <input type="radio" name="payment" value="card" checked>
+                                <span>Credit/Debit Card</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="payment" value="paypal">
+                                <span>PayPal</span>
+                            </label>
+                        </div>
+                        <div class="card-details">
+                            <div class="form-group">
+                                <input type="text" placeholder="Card Number" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="CVV" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Cardholder Name" required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="step-buttons">
+                        <button class="prev-step-btn" onclick="prevStep(1)">Back</button>
+                        <button class="next-step-btn" onclick="nextStep(3)">Review Order</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Order Confirmation -->
+                <div class="checkout-step" id="step-3" style="display: none;">
+                    <h4>Order Summary</h4>
+                    <div class="order-summary" id="order-summary">
+                        <!-- Order items will be displayed here -->
+                    </div>
+                    <div class="step-buttons">
+                        <button class="prev-step-btn" onclick="prevStep(2)">Back</button>
+                        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StyleHub</h3>
+                    <p>Your premier destination for fashion-forward clothing. Quality, style, and comfort in every piece.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on new arrivals and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 StyleHub. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
